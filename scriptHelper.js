@@ -74,23 +74,31 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     alert("Fuel Level and Cargo Mass must be a number");
   } else {
     list.style.visibility = "visible";
-    pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch.`;
-    copilotStatus.innerHTML = `Copilot ${copilot} is ready for launch.`;
-  }
+    pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
+    copilotStatus.innerHTML = `Co-pilot ${copilot} is ready for launch`;
 
-  if (fuelLevel < 10000) {
-    list.style.visibility = "visible";
-    fuelStatus.innerHTML = "Not enough fuel";
-    launchStatus.innerHTML = "Shuttle not ready for launch";
-    launchStatus.style.color = "red";
-  } else if (cargoLevel > 10000) {
-    list.style.visibility = "visible";
-    cargoStatus.innerHTML = "Too much mass, shuttle unable to launch";
-    launchStatus.innerHTML = "Shuttle not ready for launch";
-    launchStatus.style.color = "#C7254E";
-  } else {
-    launchStatus.style.color = "#419F6A";
-    launchStatus.innerHTML = "Shuttle is ready for launch.";
+    if (fuelLevel <= 10000 && cargoLevel <= 10000) {
+      list.style.visibility = "visible";
+      fuelStatus.innerHTML = "Fuel level too low for launch";
+      launchStatus.innerHTML = "Shuttle not ready for Launch";
+      cargoStatus.innerHTML = "Cargo mass low enough for launch";
+      launchStatus.style.color = "rgb(199, 37, 78)";
+    } else if (fuelLevel >= 10000 && cargoLevel > 10000) {
+      list.style.visibility = "visible";
+      cargoStatus.innerHTML = "Cargo mass too heavy for launch";
+      fuelStatus.innerHTML = "Fuel level high enough for launch";
+      launchStatus.innerHTML = "Shuttle not ready for Launch";
+      launchStatus.style.color = "#C7254E";
+    } else if (fuelLevel <= 10000 && cargoLevel > 10000) {
+      list.style.visibility = "visible";
+      fuelStatus.innerHTML = "Fuel level too low for launch";
+      launchStatus.innerHTML = "Shuttle not ready for Launch";
+      cargoStatus.innerHTML = "Cargo mass too heavy for launch";
+      launchStatus.style.color = "rgb(199, 37, 78)";
+    } else {
+      launchStatus.style.color = "rgb(65, 159, 106)";
+      launchStatus.innerHTML = "Shuttle is ready for Launch.";
+    }
   }
 }
 
