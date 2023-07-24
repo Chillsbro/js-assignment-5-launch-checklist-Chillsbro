@@ -1,5 +1,5 @@
 // Write your helper functions here!
-require('isomorphic-fetch');
+require("isomorphic-fetch");
 
 function addDestinationInfo(
   document,
@@ -53,22 +53,32 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   const fuelStatus = document.getElementById("fuelStatus");
   const cargoStatus = document.getElementById("cargoStatus");
 
-  pilotStatus.innerHTML = `${pilot}`;
-  copilotStatus.innerHTML = `${copilot}`;
-
   const launchStatus = document.getElementById("launchStatus");
 
-  if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" ||
-      validateInput(fuelLevel === "Empty") || validateInput(cargoLevel) === "Empty") {
+  if (
+    validateInput(pilot) === "Empty" ||
+    validateInput(copilot) === "Empty" ||
+    validateInput(fuelLevel) === "Empty" ||
+    validateInput(cargoLevel) === "Empty"
+  ) {
     alert("All fields are required!");
+  } else if (
+    validateInput(pilot) === "Is a number" ||
+    validateInput(copilot) === "Is a number"
+  ) {
+    alert("Pilots cannot be numbers, please input a name");
+  } else if (
+    validateInput(fuelLevel) === "Not a number" ||
+    validateInput(cargoLevel) === "Not a number"
+  ) {
+    alert("Fuel Level and Cargo Mass must be a number");
+  } else {
+    list.style.visibility = "visible";
+    pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch.`;
+    copilotStatus.innerHTML = `Copilot ${copilot} is ready for launch.`;
   }
-   else if (validateInput(pilot) === "Is a number" || validateInput(copilot) === "Is a number") {
-        alert("Pilots cannot be numbers, please input a name")
-    }
-    else if (validateInput(fuelLevel) === "Not a number" || validateInput(cargoLevel) === "Not a number") {
-        alert("Fuel Level and Cargo Mass must be a number")
-    }
-  else if (fuelLevel < 10000) {
+
+  if (fuelLevel < 10000) {
     list.style.visibility = "visible";
     fuelStatus.innerHTML = "Not enough fuel";
     launchStatus.innerHTML = "Shuttle not ready for launch";
