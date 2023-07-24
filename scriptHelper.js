@@ -41,9 +41,9 @@ function validateInput(testInput) {
   if (testInput === "") {
     return "Empty";
   } else if (isNaN(numInput)) {
-    return "Not a number";
+    return "Not a Number";
   } else if (!isNaN(numInput)) {
-    return "Is a number";
+    return "Is a Number";
   }
 }
 
@@ -68,8 +68,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   ) {
     alert("Pilots cannot be numbers, please input a name");
   } else if (
-    validateInput(fuelLevel) === "Not a number" ||
-    validateInput(cargoLevel) === "Not a number"
+    validateInput(fuelLevel) === "Not a Number" ||
+    validateInput(cargoLevel) === "Not a Number"
   ) {
     alert("Fuel Level and Cargo Mass must be a number");
   } else {
@@ -80,24 +80,24 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     if (fuelLevel <= 10000 && cargoLevel <= 10000) {
       list.style.visibility = "visible";
       fuelStatus.innerHTML = "Fuel level too low for launch";
-      launchStatus.innerHTML = "Shuttle not ready for Launch";
+      launchStatus.innerHTML = "Shuttle Not Ready for Launch";
       cargoStatus.innerHTML = "Cargo mass low enough for launch";
       launchStatus.style.color = "rgb(199, 37, 78)";
     } else if (fuelLevel >= 10000 && cargoLevel > 10000) {
       list.style.visibility = "visible";
       cargoStatus.innerHTML = "Cargo mass too heavy for launch";
       fuelStatus.innerHTML = "Fuel level high enough for launch";
-      launchStatus.innerHTML = "Shuttle not ready for Launch";
+      launchStatus.innerHTML = "Shuttle Not Ready for Launch";
       launchStatus.style.color = "#C7254E";
     } else if (fuelLevel <= 10000 && cargoLevel > 10000) {
       list.style.visibility = "visible";
       fuelStatus.innerHTML = "Fuel level too low for launch";
-      launchStatus.innerHTML = "Shuttle not ready for Launch";
+      launchStatus.innerHTML = "Shuttle Not Ready for Launch";
       cargoStatus.innerHTML = "Cargo mass too heavy for launch";
       launchStatus.style.color = "rgb(199, 37, 78)";
     } else {
       launchStatus.style.color = "rgb(65, 159, 106)";
-      launchStatus.innerHTML = "Shuttle is ready for Launch.";
+      launchStatus.innerHTML = "Shuttle is Ready for Launch.";
     }
   }
 }
