@@ -40,10 +40,10 @@ function validateInput(testInput) {
   const numInput = Number(testInput);
   if (testInput === "") {
     return "Empty";
+  } else if (!isNaN(numInput)) {
+    return "Is a number";
   } else if (isNaN(numInput)) {
     return "Not a Number";
-  } else if (!isNaN(numInput)) {
-    return "Is a Number";
   }
 }
 
